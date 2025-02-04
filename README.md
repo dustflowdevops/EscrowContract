@@ -25,6 +25,9 @@ This repository contains an optimized smart contract designed to serve as a vers
 - **Cross-Chain Compatibility**  
   Fully optimized for Ethereum and all Ethereum-like blockchains, ensuring wide applicability and robust performance.
 
+- **Deal Reporting**  
+  Introduces a supplemental contract, **DealReport**, that allows participants to leave comments on their deals. This feature enhances transparency and provides a means for parties to communicate about the terms and progress of the transaction.
+
 # Smart Guarantee Contract - RU
 
 Этот репозиторий содержит оптимизированный смарт-контракт, разработанный для использования в качестве универсального механизма гарантирования децентрализованных транзакций. Контракт поддерживает множество функциональных возможностей, направленных на обеспечение безопасности и эффективности сделок в блокчейнах Ethereum и Ethereum-совместимых сетях.
@@ -51,3 +54,6 @@ This repository contains an optimized smart contract designed to serve as a vers
 
 - **Кросс-цепочная совместимость**  
   Полностью оптимизирован для Ethereum и всех Ethereum-подобных блокчейнов, обеспечивая широкую применимость и высокую производительность.
+
+- **Отчеты по сделке**  
+  Включает дополнительный контракт **DealReport**, который позволяет участникам оставлять комментарии к сделкам. Эта функция улучшает прозрачность и предоставляет участникам возможность увидить информацию про прошлие сделки медиатора и 2 стороны сделки.
