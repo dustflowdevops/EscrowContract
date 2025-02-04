@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Proprietary
 pragma solidity ^0.8.17;
 
-import "DealLocalInteractManager.sol";
+import "DealInteractManager.sol";
 
-contract DealEditManager is DealLocalInteractManager 
+contract DealEditManager is DealInteractManager 
 {
     event DealBecomeTwoSided(bytes32 indexed id, address indexed  initiator, address indexed  counterparty, address mediator);
     
@@ -22,7 +22,7 @@ contract DealEditManager is DealLocalInteractManager
     mapping(uint => EditDealMediator) public editDealMediatorRequests;
 
     constructor(uint256 _depositCommissionPercent, address _commissionRecipient) 
-    DealLocalInteractManager(_depositCommissionPercent, _commissionRecipient) {   
+    DealInteractManager(_depositCommissionPercent, _commissionRecipient) {   
     }
 
     //Get deal mediator edit request

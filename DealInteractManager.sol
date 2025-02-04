@@ -12,13 +12,13 @@ contract DealInteractManager is DealCreationManager
     //MAIN
 
     // Executes specific actions defined for the deal after the expiration date
-    function withdrawExecuteActionsAfterExpiration(bytes32 dealId) public returns (bool) {
+    function executeActionsAfterExpiration(bytes32 dealId, bool local) public returns (bool) {
         Deal storage deal = deals[dealId];
 
         require(deal.counterparty == msg.sender || deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
         require(deal.isSignedByCounterparty, "D2");
         require(deal.isCompleted == false && deal.isCanceled == false, "D3");        
-        require(deal.expirationDate <= block.timestamp, "D1.1");
+        require(deal.expirationDate <= block.timestamp, "D1.2");
 
         MediatorAction action = deal.mediatorActionOnExpiration;
 
@@ -36,11 +36,11 @@ contract DealInteractManager is DealCreationManager
 
         if(action == MediatorAction.backToUsers)
         {
-            withdrawFromContractTo(deal.initiator, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
-            withdrawFromContractTo(deal.mediator, tokenIntitiator, amountToMediatorInitiator);
+            invokeAddBalanceTo(local, deal.initiator, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
+            invokeAddBalanceTo(local, deal.mediator, tokenIntitiator, amountToMediatorInitiator);
 
-            withdrawFromContractTo(deal.counterparty, tokenCounterparty, depositCounterparty - amountToMediatorCounterparty);
-            withdrawFromContractTo(deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+            invokeAddBalanceTo(local, deal.counterparty, tokenCounterparty, depositCounterparty - amountToMediatorCounterparty);
+            invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
 
             emit GivebackToInitiator(dealId, deal.initiator, deal.counterparty, deal.mediator, 
             msg.sender, depositInitiator, amountToMediatorInitiator); 
@@ -50,11 +50,11 @@ contract DealInteractManager is DealCreationManager
 
         if(action == MediatorAction.closeToCounterparty)
         {
-            withdrawFromContractTo(deal.counterparty, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
-            withdrawFromContractTo(deal.mediator, tokenIntitiator, amountToMediatorInitiator);
+            invokeAddBalanceTo(local, deal.counterparty, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
+            invokeAddBalanceTo(local, deal.mediator, tokenIntitiator, amountToMediatorInitiator);
 
-            withdrawFromContractTo(deal.counterparty, tokenCounterparty, depositCounterparty - amountToMediatorCounterparty);
-            withdrawFromContractTo(deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+            invokeAddBalanceTo(local, deal.counterparty, tokenCounterparty, depositCounterparty - amountToMediatorCounterparty);
+            invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
         
             emit TransferToCounterparty(dealId, deal.initiator, deal.counterparty, deal.mediator,
             msg.sender, depositInitiator,amountToMediatorInitiator); 
@@ -64,11 +64,11 @@ contract DealInteractManager is DealCreationManager
 
         if(action == MediatorAction.closeToInitiator)
         {
-            withdrawFromContractTo(deal.initiator, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
-            withdrawFromContractTo(deal.mediator, tokenIntitiator, amountToMediatorInitiator);
+            invokeAddBalanceTo(local, deal.initiator, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
+            invokeAddBalanceTo(local, deal.mediator, tokenIntitiator, amountToMediatorInitiator);
 
-            withdrawFromContractTo(deal.initiator, tokenCounterparty, depositCounterparty - amountToMediatorCounterparty);
-            withdrawFromContractTo(deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+            invokeAddBalanceTo(local, deal.initiator, tokenCounterparty, depositCounterparty - amountToMediatorCounterparty);
+            invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
             
             emit GivebackToInitiator(dealId, deal.initiator, deal.counterparty, deal.mediator,
             msg.sender, depositInitiator, amountToMediatorInitiator); 
@@ -78,8 +78,8 @@ contract DealInteractManager is DealCreationManager
 
         if(action == MediatorAction.closeToMediator)
         {
-            withdrawFromContractTo(deal.mediator, tokenIntitiator,depositInitiator);
-            withdrawFromContractTo(deal.mediator, tokenCounterparty, depositCounterparty);
+            invokeAddBalanceTo(local, deal.mediator, tokenIntitiator,depositInitiator);
+            invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, depositCounterparty);
 
             emit TransferToFromDeal(dealId, deal.initiator, deal.counterparty, deal.mediator,
             msg.sender, deal.mediator, amountToMediatorInitiator, amountToMediatorCounterparty, 0, 0);   
@@ -87,11 +87,11 @@ contract DealInteractManager is DealCreationManager
 
         if(action == MediatorAction.closeToPlatform)
         {
-            withdrawFromContractTo(commissionRecipient, tokenIntitiator,depositInitiator - amountToMediatorInitiator);
-            withdrawFromContractTo(commissionRecipient, tokenCounterparty, depositCounterparty - amountToMediatorCounterparty);
+            invokeAddBalanceTo(local, commissionRecipient, tokenIntitiator,depositInitiator - amountToMediatorInitiator);
+            invokeAddBalanceTo(local, commissionRecipient, tokenCounterparty, depositCounterparty - amountToMediatorCounterparty);
 
-            withdrawFromContractTo(deal.mediator, tokenIntitiator, amountToMediatorInitiator);
-            withdrawFromContractTo(deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+            invokeAddBalanceTo(local, deal.mediator, tokenIntitiator, amountToMediatorInitiator);
+            invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
 
             emit TransferToFromDeal(dealId, deal.initiator, deal.counterparty, deal.mediator,
             msg.sender, commissionRecipient, amountToMediatorInitiator, amountToMediatorCounterparty,
@@ -106,7 +106,7 @@ contract DealInteractManager is DealCreationManager
     }
 
     // Cancels an active deal, returning funds to the respective parties 
-    function withdrawCancelDeal(bytes32 dealId) public returns (bool) {
+    function cancelDeal(bytes32 dealId, bool local) public returns (bool) {
         Deal storage deal = deals[dealId];
 
         require(deal.counterparty == msg.sender || deal.mediator == msg.sender, "D5");
@@ -124,11 +124,11 @@ contract DealInteractManager is DealCreationManager
         uint amountToMediatorInitiator = Percent.applyToNumber(depositInitiator, PRC_feeInitatior);
         uint amountToMediatorCounterparty = Percent.applyToNumber(depositCounterparty, PRC_feeCounterparty);
 
-        withdrawFromContractTo(deal.initiator, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
-        withdrawFromContractTo(deal.mediator, tokenIntitiator, amountToMediatorInitiator);
+        invokeAddBalanceTo(local, deal.initiator, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
+        invokeAddBalanceTo(local, deal.mediator, tokenIntitiator, amountToMediatorInitiator);
 
-        withdrawFromContractTo(deal.counterparty, tokenCounterparty, depositCounterparty - depositCounterparty);
-        withdrawFromContractTo(deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+        invokeAddBalanceTo(local, deal.counterparty, tokenCounterparty, depositCounterparty - depositCounterparty);
+        invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
 
         emit GivebackToInitiator(dealId, deal.initiator, deal.counterparty, deal.mediator, 
         msg.sender, depositInitiator, amountToMediatorInitiator); 
@@ -140,7 +140,7 @@ contract DealInteractManager is DealCreationManager
     }
 
     // Marks the deal as completed and executes final terms
-    function withdrawCompleteDeal(bytes32 dealId) public returns (bool) {
+    function completeDeal(bytes32 dealId, bool local) public returns (bool) {
         Deal storage deal = deals[dealId];
 
         require(deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
@@ -158,11 +158,11 @@ contract DealInteractManager is DealCreationManager
         uint amountToMediatorInitiator = Percent.applyToNumber(depositInitiator, PRC_feeInitatior);
         uint amountToMediatorCounterparty = Percent.applyToNumber(depositCounterparty, PRC_feeCounterparty);
 
-        withdrawFromContractTo(deal.counterparty, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
-        withdrawFromContractTo(deal.mediator, tokenIntitiator, amountToMediatorInitiator);
+        invokeAddBalanceTo(local, deal.counterparty, tokenIntitiator, depositInitiator - amountToMediatorInitiator);
+        invokeAddBalanceTo(local, deal.mediator, tokenIntitiator, amountToMediatorInitiator);
 
-        withdrawFromContractTo(deal.initiator, tokenCounterparty, depositCounterparty - depositCounterparty);
-        withdrawFromContractTo(deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+        invokeAddBalanceTo(local, deal.initiator, tokenCounterparty, depositCounterparty - depositCounterparty);
+        invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
 
         emit TransferToInitiator(dealId, deal.initiator, deal.counterparty, deal.mediator,
         msg.sender, depositCounterparty,amountToMediatorCounterparty);    
@@ -178,7 +178,7 @@ contract DealInteractManager is DealCreationManager
     //DEPOSIT
 
     // Allows the initiator to make an additional deposit
-    function payUpAddDepositByInitiator(bytes32 dealId, uint256 amount) public payable returns (bool) {
+    function addDepositByInitiator(bytes32 dealId, uint256 amount, bool local) public payable returns (bool) {
         Deal storage deal = deals[dealId];
 
         require(deal.initiator == msg.sender, "D5");
@@ -186,9 +186,16 @@ contract DealInteractManager is DealCreationManager
 
         uint balance = balanceOf(msg.sender, deal.initiatorTokenAddress);
 
-        if(balance < amount)
+        if(local)
         {
-            deposit(deal.initiatorTokenAddress, amount - balance);
+            require(balance >= amount, "T1");
+        }
+        else
+        {
+            if(balance < amount)
+            {
+                deposit(deal.initiatorTokenAddress, amount - balance);
+            }
         }
 
         removeBalanceFrom(msg.sender,deal.initiatorTokenAddress, amount);
@@ -201,7 +208,7 @@ contract DealInteractManager is DealCreationManager
     }
 
     // Allows the counterparty to make an additional deposit
-    function payUpAddDepositByCounterparty(bytes32 dealId, uint256 amount) public payable  returns (bool) {
+    function addDepositByCounterparty(bytes32 dealId, uint256 amount, bool local) public payable returns (bool) {
         Deal storage deal = deals[dealId];
 
         require(deal.counterparty == msg.sender, "D5");
@@ -209,9 +216,16 @@ contract DealInteractManager is DealCreationManager
 
         uint balance = balanceOf(msg.sender, deal.counterpartyTokenAddress);
 
-        if(balance < amount)
+        if(local)
         {
-            deposit(deal.counterpartyTokenAddress, amount - balance);
+            require(balance >= amount, "T1");
+        }
+        else
+        {
+            if(balance < amount)
+            {
+                deposit(deal.counterpartyTokenAddress, amount - balance);
+            }
         }
 
         removeBalanceFrom(msg.sender,deal.counterpartyTokenAddress, amount);
@@ -226,7 +240,7 @@ contract DealInteractManager is DealCreationManager
     //TRANSFER
 
     // Allows the transfer part of deal founds
-    function withdrawTransferToCounterparty(bytes32 dealId, uint256 amount) public returns (bool) {
+    function transferToCounterparty(bytes32 dealId, uint256 amount, bool local) public returns (bool) {
         Deal storage deal = deals[dealId];
 
         require(deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
@@ -240,8 +254,8 @@ contract DealInteractManager is DealCreationManager
         uint PRC_feeInitatior = deal.PRC_InitatorMediatorFee;
         uint amountToMediatorInitiator = Percent.applyToNumber(amount, PRC_feeInitatior);
 
-        withdrawFromContractTo(deal.counterparty, tokenIntitiator, amount- amountToMediatorInitiator);
-        withdrawFromContractTo(deal.mediator, tokenIntitiator, amountToMediatorInitiator);
+        invokeAddBalanceTo(local, deal.counterparty, tokenIntitiator, amount- amountToMediatorInitiator);
+        invokeAddBalanceTo(local, deal.mediator, tokenIntitiator, amountToMediatorInitiator);
 
         emit TransferToCounterparty(dealId, deal.initiator, deal.counterparty, deal.mediator, msg.sender, amount, amountToMediatorInitiator);
 
@@ -249,7 +263,7 @@ contract DealInteractManager is DealCreationManager
     }
 
     // Allows the transfer part of deal founds
-    function withdrawTransferToInitiator(bytes32 dealId, uint256 amount) public returns (bool) {
+    function transferToInitiator(bytes32 dealId, uint256 amount, bool local) public returns (bool) {
         Deal storage deal = deals[dealId];
 
         require(deal.counterparty == msg.sender || deal.mediator == msg.sender, "D5");
@@ -263,8 +277,8 @@ contract DealInteractManager is DealCreationManager
         uint PRC_feeCounterparty = deal.PRC_CounterpartyMediatorFee;
         uint amountToMediatorCounterparty = Percent.applyToNumber(amount, PRC_feeCounterparty);
 
-        withdrawFromContractTo(deal.initiator, tokenCounterparty, amount- amountToMediatorCounterparty);
-        withdrawFromContractTo(deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+        invokeAddBalanceTo(local, deal.initiator, tokenCounterparty, amount- amountToMediatorCounterparty);
+        invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
 
         emit TransferToInitiator(dealId, deal.initiator, deal.counterparty, deal.mediator, msg.sender, amount, amountToMediatorCounterparty);
 
@@ -274,7 +288,7 @@ contract DealInteractManager is DealCreationManager
     //GIVEBACK
 
     // Allows the transfer part of deal founds
-    function withdrawGivebackToConunterparty(bytes32 dealId, uint256 amount) public returns (bool) {
+    function givebackToConunterparty(bytes32 dealId, uint256 amount, bool local) public returns (bool) {
         Deal storage deal = deals[dealId];
 
         require(deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
@@ -288,8 +302,8 @@ contract DealInteractManager is DealCreationManager
         uint PRC_feeCounterparty = deal.PRC_CounterpartyMediatorFee;
         uint amountToMediatorCounterparty = Percent.applyToNumber(amount, PRC_feeCounterparty);
 
-        withdrawFromContractTo(deal.counterparty, tokenCounterparty, amount- amountToMediatorCounterparty);
-        withdrawFromContractTo(deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+        invokeAddBalanceTo(local, deal.counterparty, tokenCounterparty, amount- amountToMediatorCounterparty);
+        invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
 
         emit GivebackToCounterparty(dealId, deal.initiator, deal.counterparty, deal.mediator, msg.sender, amount, amountToMediatorCounterparty);
 
@@ -297,10 +311,10 @@ contract DealInteractManager is DealCreationManager
     }
 
     // Allows the transfer part of deal founds
-    function withdrawGivebackToInitiator(bytes32 dealId, uint256 amount) public returns (bool) {
+    function givebackToInitiator(bytes32 dealId, uint256 amount, bool local) public returns (bool) {
         Deal storage deal = deals[dealId];
 
-        require(deal.counterparty == msg.sender || deal.mediator == msg.sender, "D5");
+        require(deal.counterparty == msg.sender || deal.mediator == msg.sender,"D5");
         DealContract.requireCanEdit(deal); 
 
         require(deal.initiatorCurrentAmount < amount, "T1");
@@ -311,11 +325,23 @@ contract DealInteractManager is DealCreationManager
         uint PRC_feeInitatior = deal.PRC_InitatorMediatorFee;
         uint amountToMediatorInitiator = Percent.applyToNumber(amount, PRC_feeInitatior);
 
-        withdrawFromContractTo(deal.initiator, tokenIntitiator, amount- amountToMediatorInitiator);
-        withdrawFromContractTo(deal.mediator, tokenIntitiator, amountToMediatorInitiator);
+        invokeAddBalanceTo(local, deal.initiator, tokenIntitiator, amount- amountToMediatorInitiator);
+        invokeAddBalanceTo(local, deal.mediator, tokenIntitiator, amountToMediatorInitiator);
 
         emit GivebackToInitiator(dealId, deal.initiator, deal.counterparty, deal.mediator, msg.sender, amount, amountToMediatorInitiator);
 
         return true; 
+    }
+
+    function invokeAddBalanceTo(bool local, address to, address token, uint amount) internal returns (bool)
+    {
+        if(local)
+        {
+           return  addBalanceTo(to, token, amount);
+        }
+        else
+        {
+            return withdrawFromContractTo(to, token, amount);
+        }
     }
 }
