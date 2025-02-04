@@ -1,0 +1,225 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_dealContractAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "comment",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "initiatior",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "counterparty",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "mediator",
+						"type": "address"
+					}
+				],
+				"name": "ReviewGiven",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "dealContract",
+				"outputs": [
+					{
+						"internalType": "contract DealCreationManager",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "dealContractAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_comment",
+						"type": "string"
+					}
+				],
+				"name": "leaveReview",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "reviews",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Extensions/DealReport/DealReport.sol": "DealReview"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"Deal.sol": {
+			"keccak256": "0x8402141ad1b0cfdc0572f513eff8bfb7e3536325aa771aefdd26918916b37fde",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://da188923eec873c8a06fa15d2f680a20c1a0291902081872925b989098684ef2",
+				"dweb:/ipfs/Qme54EzsEWvR6w6VUhiCxVAoqmiYoWgDyj2HuHbJEDpprX"
+			]
+		},
+		"DealCreationManager.sol": {
+			"keccak256": "0xe56b4a35355432181a6f7b2580919d9500b9599d10afc55e60b26ffb72730e6e",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://98ccc63ea61412934f5644d96e112dfd07d10ac081e0ce0915a69fb0ca489879",
+				"dweb:/ipfs/QmQ9prYmrsVLwatszHjahiWx22LXECgJRSKbaJ2nUSvKdo"
+			]
+		},
+		"Extensions/DealReport/DealReport.sol": {
+			"keccak256": "0x228e85b6dc9af33c9aa72e56f2297420cec4f33a0984a992850cf60a0574e35f",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://6f519a9a374c438fbb6607509fc0f28c24d1ceeb7420fa85ef65a2a6a6ca1c4a",
+				"dweb:/ipfs/QmRuDUb8yDy7qV1hpw2i8428BqkCVCRay97xGVCf63GDFe"
+			]
+		},
+		"LockableContract.sol": {
+			"keccak256": "0xa91c9bf79ba47797d1d55fa32248d511e318945f35786aca126ba729522c39b6",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://2523548b74b8a6276c2deb6b40023016460b6e3882f631028aa61821d4c8ec3e",
+				"dweb:/ipfs/QmZz3pi8PEJPXdaqxaYUyUPVGRWu2FTcqhMRtDLo7y2Vzv"
+			]
+		},
+		"Percent.sol": {
+			"keccak256": "0xb92a9bb2577846f5e68b08fae63ee137d8df826cad1ed0746bdf55e1ab0b0ca0",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://dc04e418475d68081b2d9fc7a8ec2c3e1e2f927c78c950d1982047228edd886a",
+				"dweb:/ipfs/QmNjweszDAqbDMUVm6uodxH7SiqGSLYMGQ4ogrPCxoWfQU"
+			]
+		},
+		"WalletContract.sol": {
+			"keccak256": "0x7a9309112745310a4e86e624d787c8fe800f6e5776284788624f50687525509e",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://bad3c56babdb8909ba5ae6e0f79b22144d2ffdc056dceec957aeee751d423851",
+				"dweb:/ipfs/QmRdtSuTTrThxiUP1M6QjAvYHnnCuYhnGV3d6ZTHUQyWj5"
+			]
+		}
+	},
+	"version": 1
+}

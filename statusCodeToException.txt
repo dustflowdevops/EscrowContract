@@ -9,13 +9,14 @@ D2.1 - Action cant be invoked, becose deal is already signed
 D2.2 - Action cant be invoked, becose deal is already two sided
 D3 - Action cant be invoked, becose deal is finished
 D3.1 - Action cant be invoked on not two sided deal
-D4 - NOT USED, RESERVED FOR UPDATES
+D4 - Action cant be invoked, becose deal is not finished
 D5 - Caller must be a part of deal to invoke action
+D5.1 - User must be a part of deal
 
 CONTRACT EXCEPTIONS
 C1 - Value cant be null
 C1.1 - Value must be null, becose root value is null
-C2 - NOT USED, RESERVED FOR UPDATES
+C2 - Already exists value
 C3 - Value must be different
 C3.1 - Value is fixed, and cant be changed
 C4 - Amount mismatch
