@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Proprietary
+
 DEAL EXCEPTIONS
 D1 - Action cant be invoked, becose deal is passed 
 D1.1 - Action expiration date cant be set to the past
