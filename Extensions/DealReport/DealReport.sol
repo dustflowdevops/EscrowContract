@@ -46,8 +46,6 @@ contract DealReview {
         require(deal.counterparty == msg.sender || deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
         require(deal.counterparty == _to || deal.initiator == _to || deal.mediator == _to, "D5.1");
 
-        require(bytes(reviews[dealId][msg.sender][_to]).length == 0, "C3");
-
         reviews[dealId][msg.sender][_to] = _comment;
     }
 }
