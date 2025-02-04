@@ -28,3 +28,4 @@ T3 - Not enough money to withdrawal
 
 GLOBAL LOGIC EXCEPTIONS
 L1 - Cant do this action on disabled contract
+L2 - Only owner can do this

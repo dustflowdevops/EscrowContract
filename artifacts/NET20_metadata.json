@@ -1,0 +1,116 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"WalletContract.sol": "NET20"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"LockableContract.sol": {
+			"keccak256": "0xa91c9bf79ba47797d1d55fa32248d511e318945f35786aca126ba729522c39b6",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://2523548b74b8a6276c2deb6b40023016460b6e3882f631028aa61821d4c8ec3e",
+				"dweb:/ipfs/QmZz3pi8PEJPXdaqxaYUyUPVGRWu2FTcqhMRtDLo7y2Vzv"
+			]
+		},
+		"Percent.sol": {
+			"keccak256": "0xb92a9bb2577846f5e68b08fae63ee137d8df826cad1ed0746bdf55e1ab0b0ca0",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://dc04e418475d68081b2d9fc7a8ec2c3e1e2f927c78c950d1982047228edd886a",
+				"dweb:/ipfs/QmNjweszDAqbDMUVm6uodxH7SiqGSLYMGQ4ogrPCxoWfQU"
+			]
+		},
+		"WalletContract.sol": {
+			"keccak256": "0x7a9309112745310a4e86e624d787c8fe800f6e5776284788624f50687525509e",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://bad3c56babdb8909ba5ae6e0f79b22144d2ffdc056dceec957aeee751d423851",
+				"dweb:/ipfs/QmRdtSuTTrThxiUP1M6QjAvYHnnCuYhnGV3d6ZTHUQyWj5"
+			]
+		}
+	},
+	"version": 1
+}

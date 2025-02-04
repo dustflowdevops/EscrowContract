@@ -2,14 +2,12 @@
 pragma solidity ^0.8.17;
 
 import "LockableContract.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "Percent.sol";
 
 contract WalletContract is LockableContract
 {
     // Mapping to store user balances for each contract (token address => balance)
     mapping(address => mapping(address => uint256)) public balances;
-
 
     // Commission parameters (using the Percent library for precision)
     uint256 public depositCommissionPercent; // Commission percent for deposits, in precision scale
@@ -51,7 +49,7 @@ contract WalletContract is LockableContract
             addBalanceTo(msg.sender, token, amount);
             addBalanceTo(commissionRecipient,token, commission);
         } else {
-            require(IERC20(token).transferFrom(msg.sender, address(this), amount + commission), "T2");
+            require(NET20(token).transferFrom(msg.sender, address(this), amount + commission), "T2");
 
             addBalanceTo(msg.sender, token, amount);
             addBalanceTo(commissionRecipient,token, commission);
@@ -115,7 +113,7 @@ contract WalletContract is LockableContract
             payable(to).transfer(amount);
         } else {
             // For NET-20 tokens, transfer the specified token
-            require(IERC20(token).transfer(to, amount), "T3");
+            require(NET20(token).transfer(to, amount), "T3");
         }
 
         // Emit withdrawal event
@@ -150,4 +148,10 @@ contract WalletContract is LockableContract
 
         return true;        
     } 
+}
+
+
+interface NET20 {
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
 }
