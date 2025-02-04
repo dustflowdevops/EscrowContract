@@ -10,14 +10,11 @@ contract DealReview {
         address indexed from,          // From whom the review is
         address indexed to,            // To whom the review is
         bytes32 indexed dealId,        // Deal ID
-        string comment,                // Review text
-        address initiatior,
-        address counterparty,
-        address mediator
+        string text,                   // Review text
+        address initiator,             // Deal initiator
+        address counterparty,          // Deal counterparty
+        address mediator               // Deal mediator
     );
-
-    // Mapping of deal IDs to reviews
-    mapping(bytes32 => mapping(address => mapping(address => string))) public reviews; // dealId -> from -> to -> Review
 
     // Reference to the DealContract to interact with it
     DealCreationManager public dealContract;
@@ -31,9 +28,9 @@ contract DealReview {
 
     // Function to leave a review
     function leaveReview(
-        bytes32 dealId,                // The deal ID
-        address _to,                 // To whom the review is left (another participant)
-        string memory _comment        // Review text
+        bytes32 dealId,               // The deal ID
+        address _to,                   // To whom the review is left (another participant)
+        string memory _comment         // Review text
     ) public {
         Deal memory deal = dealContract.getDeal(dealId);
 
@@ -46,6 +43,6 @@ contract DealReview {
         require(deal.counterparty == msg.sender || deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
         require(deal.counterparty == _to || deal.initiator == _to || deal.mediator == _to, "D5.1");
 
-        reviews[dealId][msg.sender][_to] = _comment;
+        emit ReviewGiven(msg.sender, _to, dealId, _comment, deal.initiator, deal.counterparty, deal.mediator);
     }
 }
