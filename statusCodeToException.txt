@@ -24,6 +24,7 @@ C5 - Value out of range
 BALANCE AND TOKEN EXCEPTIONS
 T1 - Balance is not enought to action
 T2 - To low allowance to transfer
+T3 - Not enough money to withdrawal
 
 GLOBAL LOGIC EXCEPTIONS
 L1 - Cant do this action on disabled contract

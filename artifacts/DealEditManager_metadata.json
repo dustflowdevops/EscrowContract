@@ -49,7 +49,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -86,7 +86,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -181,7 +181,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -212,7 +212,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -230,13 +230,13 @@
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "sender",
+						"name": "mediator",
 						"type": "address"
 					},
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "mediator",
+						"name": "sender",
 						"type": "address"
 					}
 				],
@@ -249,7 +249,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -267,13 +267,13 @@
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "sender",
+						"name": "mediator",
 						"type": "address"
 					},
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "mediator",
+						"name": "sender",
 						"type": "address"
 					}
 				],
@@ -286,7 +286,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -317,7 +317,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -352,6 +352,12 @@
 						"type": "address"
 					},
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
 						"indexed": false,
 						"internalType": "uint256",
 						"name": "amount",
@@ -362,12 +368,6 @@
 						"internalType": "uint256",
 						"name": "commission",
 						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "token",
-						"type": "address"
 					}
 				],
 				"name": "Deposit",
@@ -379,7 +379,216 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "initiator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "counterparty",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "mediator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "EditDealExpirationRequestCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "signedInititor",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "signedCounterparty",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "signedMediator",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "rejected",
+						"type": "bool"
+					}
+				],
+				"name": "EditDealExpirationRequestUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newMediator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "EditDealMediatorRequestCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "reid",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "signedByInitiator",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "signedByCounterparty",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "rejected",
+						"type": "bool"
+					}
+				],
+				"name": "EditDealMediatorRequestUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "Id",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "initiator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "counterparty",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "mediator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newExpirationDate",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum MediatorAction",
+						"name": "mediatorActionOnExpiration",
+						"type": "uint8"
+					}
+				],
+				"name": "EditedDealExpiration",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -428,7 +637,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -477,6 +686,25 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "mediator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					}
+				],
+				"name": "JoinedToDealAsMediator",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "previousOwner",
 						"type": "address"
 					},
@@ -506,6 +734,12 @@
 						"type": "address"
 					},
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
 						"indexed": false,
 						"internalType": "uint256",
 						"name": "value",
@@ -521,7 +755,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -570,7 +804,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -637,7 +871,7 @@
 					{
 						"indexed": true,
 						"internalType": "bytes32",
-						"name": "dealHash",
+						"name": "id",
 						"type": "bytes32"
 					},
 					{
@@ -690,16 +924,16 @@
 						"type": "address"
 					},
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
 						"indexed": false,
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "token",
-						"type": "address"
 					}
 				],
 				"name": "Withdrawal",
@@ -750,7 +984,7 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -907,37 +1141,37 @@
 				"inputs": [
 					{
 						"internalType": "address payable",
-						"name": "_counterparty",
+						"name": "counterparty",
 						"type": "address"
 					},
 					{
 						"internalType": "address payable",
-						"name": "_mediator",
+						"name": "mediator",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "amount",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_PRC_MediatorFee",
+						"name": "PRCMediatorFee",
 						"type": "uint256"
 					},
 					{
 						"internalType": "address",
-						"name": "_tokenAddress",
+						"name": "tokenAddress",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_expirationDate",
+						"name": "expirationDate",
 						"type": "uint256"
 					},
 					{
 						"internalType": "enum MediatorAction",
-						"name": "_mediatorActionOnExpiration",
+						"name": "mediatorActionOnExpiration",
 						"type": "uint8"
 					}
 				],
@@ -958,6 +1192,16 @@
 						"internalType": "bytes32",
 						"name": "dealId",
 						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "newExpirationDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum MediatorAction",
+						"name": "newMediatorActionOnExpiration",
+						"type": "uint8"
 					}
 				],
 				"name": "createDealEditExpiration",
@@ -968,59 +1212,83 @@
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address payable",
+						"name": "newMediator",
+						"type": "address"
+					}
+				],
+				"name": "createEditDealMediatorRequest",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "address payable",
-						"name": "_counterparty",
+						"name": "counterparty",
 						"type": "address"
 					},
 					{
 						"internalType": "address payable",
-						"name": "_mediator",
+						"name": "mediator",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_initiatorCreateAmount",
+						"name": "initiatorCreateAmount",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_counterpartyCreateAmount",
+						"name": "counterpartyCreateAmount",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_PRC_MediatorFeeInititor",
+						"name": "PRCMediatorFeeInititor",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_PRC_MediatorFeeCounterparty",
+						"name": "PRCMediatorFeeCounterparty",
 						"type": "uint256"
 					},
 					{
 						"internalType": "address",
-						"name": "_initiatorTokenAddress",
+						"name": "initiatorTokenAddress",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "_counterpartyTokenAddress",
+						"name": "counterpartyTokenAddress",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_expirationDate",
+						"name": "expirationDate",
 						"type": "uint256"
 					},
 					{
 						"internalType": "enum MediatorAction",
-						"name": "_mediatorActionOnExpiration",
+						"name": "mediatorActionOnExpiration",
 						"type": "uint8"
 					}
 				],
@@ -1138,78 +1406,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "dealsByCounterparty",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "dealsByInitiator",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "dealsByMediator",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "token",
 						"type": "address"
 					},
@@ -1245,6 +1441,94 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "editDealExpirationRequests",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum MediatorAction",
+						"name": "mediatorActionOnExpiration",
+						"type": "uint8"
+					},
+					{
+						"internalType": "bool",
+						"name": "singedByInitiator",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "signedByCounterparty",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "signedByMediator",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "rejected",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "editDealMediatorRequests",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address payable",
+						"name": "mediator",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "singedByInitiator",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "signedByCounterparty",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "rejected",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "enableContract",
 				"outputs": [],
@@ -1271,8 +1555,14 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "getCompletedDeals",
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "getAmountToDepositViaComission",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -1392,17 +1682,54 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
 					}
 				],
-				"name": "getDealsByCounterparty",
+				"name": "getEditDealExpiratation",
 				"outputs": [
 					{
-						"internalType": "bytes32[]",
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "dealId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expirationDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum MediatorAction",
+								"name": "mediatorActionOnExpiration",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bool",
+								"name": "singedByInitiator",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "signedByCounterparty",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "signedByMediator",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "rejected",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct EditDealExpiratation",
 						"name": "",
-						"type": "bytes32[]"
+						"type": "tuple"
 					}
 				],
 				"stateMutability": "view",
@@ -1410,50 +1737,45 @@
 			},
 			{
 				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					}
-				],
-				"name": "getDealsByInitiator",
-				"outputs": [
-					{
-						"internalType": "bytes32[]",
-						"name": "",
-						"type": "bytes32[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					}
-				],
-				"name": "getDealsByMediator",
-				"outputs": [
-					{
-						"internalType": "bytes32[]",
-						"name": "",
-						"type": "bytes32[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getTotalDeals",
-				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "id",
 						"type": "uint256"
+					}
+				],
+				"name": "getEditDealMediator",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "dealId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "address payable",
+								"name": "mediator",
+								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "singedByInitiator",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "signedByCounterparty",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "rejected",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct EditDealMediator",
+						"name": "",
+						"type": "tuple"
 					}
 				],
 				"stateMutability": "view",
@@ -1560,6 +1882,54 @@
 						"internalType": "bytes32",
 						"name": "dealId",
 						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "payUpAddDepositByCounterparty",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "payUpAddDepositByInitiator",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
 					}
 				],
 				"name": "payUpCounterpartyAcceptSidedDeal",
@@ -1577,37 +1947,37 @@
 				"inputs": [
 					{
 						"internalType": "address payable",
-						"name": "_counterparty",
+						"name": "counterparty",
 						"type": "address"
 					},
 					{
 						"internalType": "address payable",
-						"name": "_mediator",
+						"name": "mediator",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "amount",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_PRC_MediatorFee",
+						"name": "PRCMediatorFee",
 						"type": "uint256"
 					},
 					{
 						"internalType": "address",
-						"name": "_tokenAddress",
+						"name": "tokenAddress",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_expirationDate",
+						"name": "expirationDate",
 						"type": "uint256"
 					},
 					{
 						"internalType": "enum MediatorAction",
-						"name": "_mediatorActionOnExpiration",
+						"name": "mediatorActionOnExpiration",
 						"type": "uint8"
 					}
 				],
@@ -1626,52 +1996,52 @@
 				"inputs": [
 					{
 						"internalType": "address payable",
-						"name": "_counterparty",
+						"name": "counterparty",
 						"type": "address"
 					},
 					{
 						"internalType": "address payable",
-						"name": "_mediator",
+						"name": "mediator",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_initiatorCreateAmount",
+						"name": "initiatorCreateAmount",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_counterpartyCreateAmount",
+						"name": "counterpartyCreateAmount",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_PRC_MediatorFeeInititor",
+						"name": "PRCMediatorFeeInititor",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_PRC_MediatorFeeCounterparty",
+						"name": "PRCMediatorFeeCounterparty",
 						"type": "uint256"
 					},
 					{
 						"internalType": "address",
-						"name": "_initiatorTokenAddress",
+						"name": "initiatorTokenAddress",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "_counterpartyTokenAddress",
+						"name": "counterpartyTokenAddress",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_expirationDate",
+						"name": "expirationDate",
 						"type": "uint256"
 					},
 					{
 						"internalType": "enum MediatorAction",
-						"name": "_mediatorActionOnExpiration",
+						"name": "mediatorActionOnExpiration",
 						"type": "uint8"
 					}
 				],
@@ -1765,6 +2135,54 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "reject",
+						"type": "bool"
+					}
+				],
+				"name": "signDealEditExpiration",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "reject",
+						"type": "bool"
+					}
+				],
+				"name": "signEditDealMediatorRequest",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "totalCompletedDeals",
 				"outputs": [
@@ -1780,6 +2198,32 @@
 			{
 				"inputs": [],
 				"name": "totalDeals",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalEditDealMediatorRequests",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalEditExpirationRequests",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -1912,7 +2356,160 @@
 						"type": "bytes32"
 					}
 				],
+				"name": "withdrawCancelDeal",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					}
+				],
+				"name": "withdrawCompleteDeal",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					}
+				],
+				"name": "withdrawExecuteActionsAfterExpiration",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawGivebackToConunterparty",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawGivebackToInitiator",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					}
+				],
 				"name": "withdrawRejectSidedDeal",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawTransferToCounterparty",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawTransferToInitiator",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -1999,59 +2596,67 @@
 			]
 		},
 		"Deal.sol": {
-			"keccak256": "0xc877670542f73a43c6a5cc569d24f325d086c2787c1d8385ccbb4e3bdddd01c6",
+			"keccak256": "0x8402141ad1b0cfdc0572f513eff8bfb7e3536325aa771aefdd26918916b37fde",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://ca8284dcf88cb624918948196f7aa1993993f7fb4639e864600993645d21a042",
-				"dweb:/ipfs/Qma8L3BUSwG6Je9FMrniPZyf8VWpbQQGhrQGCfNHv1vosH"
+				"bzz-raw://da188923eec873c8a06fa15d2f680a20c1a0291902081872925b989098684ef2",
+				"dweb:/ipfs/Qme54EzsEWvR6w6VUhiCxVAoqmiYoWgDyj2HuHbJEDpprX"
 			]
 		},
 		"DealCreationManager.sol": {
-			"keccak256": "0x10d4d33367fd8183bdab788c92e601f916aa33ea7d0fd5cc28e280d93c1199db",
+			"keccak256": "0xe56b4a35355432181a6f7b2580919d9500b9599d10afc55e60b26ffb72730e6e",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://8aea6bec9e708c89fcac23f1f1726e3e5abf80cae3752387fca12c9e22c9f5f6",
-				"dweb:/ipfs/QmR71WYCqPUYMtgBex5Ep4tVkuJjHUAUAfYyrjKnJP5wHN"
+				"bzz-raw://98ccc63ea61412934f5644d96e112dfd07d10ac081e0ce0915a69fb0ca489879",
+				"dweb:/ipfs/QmQ9prYmrsVLwatszHjahiWx22LXECgJRSKbaJ2nUSvKdo"
 			]
 		},
 		"DealEditManager.sol": {
-			"keccak256": "0xe6086121dd63d6af1db20d4faa05fbf09f9b7d307b838fcafe68994b9461b0cf",
+			"keccak256": "0xb20f5991e561b357131a9453b120c307282fa132b2ab42db013d10d028e3a26e",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://441d8f5210690b1d508142d0827f83d5c5f1cdd27b7b67a4eeacc042c54593c9",
-				"dweb:/ipfs/QmcKqkVmUQF6tpxfB4FbwHHwxzbxYPDDXM84PdpiArYUCz"
+				"bzz-raw://e84d0ab47bd542048306786745f29e95b8ac040671efd6239c25f0428cdce639",
+				"dweb:/ipfs/QmV54BwiLdmLiRWc1suCACM96jsF7FAd4Q5uTf6tHSjZX2"
 			]
 		},
 		"DealInteractManager.sol": {
-			"keccak256": "0x4f6a4caa3a61c3f05ec7ab5d876fafaa8f9836bcf09bd69936e29f788a5b0d41",
+			"keccak256": "0x7a99f6ba4578206a19f021d2298b20507661e673ce70efe1962421d8903e684b",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://0f8b81de616c3576d70a9aa53c05e6956d55b922e3df7bff9df3355164b3a041",
-				"dweb:/ipfs/QmX2nhQpE5az5bk7KwqEfcgERzy34dfCYaa5tKySoDjTX9"
+				"bzz-raw://d3f9ee715e9843661a637cd23a21a01cbdfd13ef2acc66a411f5ca7c6e748b44",
+				"dweb:/ipfs/Qmeka4kWKZzvNmEMh26iB4mtEK9jnbKWNdS9RNe3ns3NUE"
+			]
+		},
+		"DealLocalInteractManager.sol": {
+			"keccak256": "0x14e8347f31a3317770cceacb3d2976efe5aad110cb537874a8c10fa5a71a44ec",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://7b4420e03aa3131c773f6e4d34ce0e1bffd9fa21179a4e608e63e77ff2398e04",
+				"dweb:/ipfs/QmZ2LenHAkhztQ9oKiRQQxetg6PLTpjUgq8qLpLj1s8RVV"
 			]
 		},
 		"LockableContract.sol": {
-			"keccak256": "0x29cad2f36730829df326868ff11d7749d2d6d9932c0a4696dab8e9c7317afbac",
+			"keccak256": "0x147b10df29505024bc1920f9801f38de92cef922ecde099f930873f9e0756e82",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://fc424dd38f7c208d75c239b1692aeeb41e792c76bd5c9e46ff7ec102b03b462a",
-				"dweb:/ipfs/QmY6HyGw539nWoWSBiZfSUgYEp5ZbXR6jSXJ72N6tJCcWB"
+				"bzz-raw://734e2252ef43cfd6a16333834cbc3515d5508f014b178b6699ed5298212271e1",
+				"dweb:/ipfs/QmcGjsrn4KYW7x8naYqAv5cGUurGmyYGZteVcDT15PEBC4"
 			]
 		},
 		"Percent.sol": {
-			"keccak256": "0x02fb41a227b3b112d584b0e3842946332e0447dfdab34687a53810ef39820a62",
+			"keccak256": "0xb92a9bb2577846f5e68b08fae63ee137d8df826cad1ed0746bdf55e1ab0b0ca0",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://3275da5e3677095b4af3035d81d6f5a095b3b7e799f019e4abcad0ad66db9bb4",
-				"dweb:/ipfs/QmcrA1qLf1U2KNYVyXmYtE1Wc5rN35pEcWe9eARKnKckAQ"
+				"bzz-raw://dc04e418475d68081b2d9fc7a8ec2c3e1e2f927c78c950d1982047228edd886a",
+				"dweb:/ipfs/QmNjweszDAqbDMUVm6uodxH7SiqGSLYMGQ4ogrPCxoWfQU"
 			]
 		},
 		"WalletContract.sol": {
-			"keccak256": "0x6ba2b5bd497e3cdf764f468e3efa19e1d199c319139852a89cd325936e75e555",
+			"keccak256": "0x19b3b4e7a334a139456578de2a3fb3a08b21f0bbadc516ead9eaf21fc81477c1",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://db23c9307eda6c720d6f2320733afc78da9aee71fd8201db7c727ee0effc89fc",
-				"dweb:/ipfs/Qmddv7ZySCnKjHKYYLKeNL6mVSmnMFXnNdQjGHgDGhuk4n"
+				"bzz-raw://1139c8d6c34d373bc7af612dd3d24d51bf133b62e2b207b3382731e6f52cf466",
+				"dweb:/ipfs/QmZgK5fcJE6tDXVFmS7bsGp5dXKMbHaH1Qj1tCyou3jeap"
 			]
 		}
 	},

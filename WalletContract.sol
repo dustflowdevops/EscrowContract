@@ -115,7 +115,7 @@ contract WalletContract is LockableContract
             payable(to).transfer(amount);
         } else {
             // For NET-20 tokens, transfer the specified token
-            IERC20(token).transfer(to, amount);
+            require(IERC20(token).transfer(to, amount), "T3");
         }
 
         // Emit withdrawal event
