@@ -1,0 +1,448 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "MaxProcent",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "NOEXPIRATIONDATE",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_initiator",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_counterparty",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_mediator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_initiatorCreateAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_counterpartyCreateAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_PRC_MediatorFeeInititor",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_PRC_MediatorFeeCounterparty",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_initiatorTokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_counterpartyTokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_expirationDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum MediatorAction",
+						"name": "_mediatorActionOnExpiration",
+						"type": "MediatorAction"
+					}
+				],
+				"name": "createDeal",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address payable",
+								"name": "initiator",
+								"type": "address"
+							},
+							{
+								"internalType": "address payable",
+								"name": "counterparty",
+								"type": "address"
+							},
+							{
+								"internalType": "address payable",
+								"name": "mediator",
+								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "isCompleted",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isCanceled",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isTwoSided",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isSignedByCounterparty",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "initiatorCreateAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "counterpartyCreateAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "initiatorCurrentAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "counterpartyCurrentAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PRC_InitatorMediatorFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PRC_CounterpartyMediatorFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "initiatorTokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "counterpartyTokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expirationDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum MediatorAction",
+								"name": "mediatorActionOnExpiration",
+								"type": "MediatorAction"
+							}
+						],
+						"internalType": "struct Deal",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "address payable",
+								"name": "initiator",
+								"type": "address"
+							},
+							{
+								"internalType": "address payable",
+								"name": "counterparty",
+								"type": "address"
+							},
+							{
+								"internalType": "address payable",
+								"name": "mediator",
+								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "isCompleted",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isCanceled",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isTwoSided",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isSignedByCounterparty",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "initiatorCreateAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "counterpartyCreateAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "initiatorCurrentAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "counterpartyCurrentAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PRC_InitatorMediatorFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PRC_CounterpartyMediatorFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "initiatorTokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "counterpartyTokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expirationDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum MediatorAction",
+								"name": "mediatorActionOnExpiration",
+								"type": "MediatorAction"
+							}
+						],
+						"internalType": "struct Deal",
+						"name": "deal",
+						"type": "tuple"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalCreated",
+						"type": "uint256"
+					}
+				],
+				"name": "createDealId",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "address payable",
+								"name": "initiator",
+								"type": "address"
+							},
+							{
+								"internalType": "address payable",
+								"name": "counterparty",
+								"type": "address"
+							},
+							{
+								"internalType": "address payable",
+								"name": "mediator",
+								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "isCompleted",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isCanceled",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isTwoSided",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "isSignedByCounterparty",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "initiatorCreateAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "counterpartyCreateAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "initiatorCurrentAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "counterpartyCurrentAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PRC_InitatorMediatorFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PRC_CounterpartyMediatorFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "initiatorTokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "counterpartyTokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expirationDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum MediatorAction",
+								"name": "mediatorActionOnExpiration",
+								"type": "MediatorAction"
+							}
+						],
+						"internalType": "struct Deal",
+						"name": "deal",
+						"type": "tuple"
+					}
+				],
+				"name": "requireCanEdit",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Deal.sol": "DealContract"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"Deal.sol": {
+			"keccak256": "0x05c0d811c59706e472dd3175e3741f0748596ae2feab649e2c1d31b51793740c",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://3d42f31db2c2f0049fd092c14d38cc76fa94233c91d597eaa011ee660c74c2e3",
+				"dweb:/ipfs/QmeqQ6cTfo5B6iJHxWZQXpvaFpMZJneLPSroR9MvsMexJy"
+			]
+		},
+		"Percent.sol": {
+			"keccak256": "0x02fb41a227b3b112d584b0e3842946332e0447dfdab34687a53810ef39820a62",
+			"license": "Proprietary",
+			"urls": [
+				"bzz-raw://3275da5e3677095b4af3035d81d6f5a095b3b7e799f019e4abcad0ad66db9bb4",
+				"dweb:/ipfs/QmcrA1qLf1U2KNYVyXmYtE1Wc5rN35pEcWe9eARKnKckAQ"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,70 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "a",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "b",
+						"type": "bool"
+					}
+				],
+				"name": "logicalXOR",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"MathLogic.sol": "MathLogic"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"MathLogic.sol": {
+			"keccak256": "0xd5c7d92558a6c44d5e3c78b9fe09d301099f1ab3e859f9ab2e28b32c2c3ea5ab",
+			"urls": [
+				"bzz-raw://1ba64bb34ce16bb7a247884623ecca47e03205e9ad8e1277a1c944aa24e97321",
+				"dweb:/ipfs/QmPXDaoYYpfmHPUawGg676ALbEjHvfeeVmxkSVGYLCFMPy"
+			]
+		}
+	},
+	"version": 1
+}

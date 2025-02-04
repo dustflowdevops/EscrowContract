@@ -1,0 +1,27 @@
+DEAL EXCEPTIONS
+D1 - Action cant be invoked, becose deal is passed 
+D1.1 - Action expiration date cant be set to the past
+D1.2 - Action cant be invoked, becose deal is not passed 
+D2 - Action cant be invoked, becose deal is not signed or not stared
+D2.1 - Action cant be invoked, becose deal is already signed
+D2.2 - Action cant be invoked, becose deal is already two sided
+D3 - Action cant be invoked, becose deal is finished
+D3.1 - Action cant be invoked on not two sided deal
+D4 - NOT USED, RESERVED FOR UPDATES
+D5 - Caller must be a part of deal to invoke action
+
+CONTRACT EXCEPTIONS
+C1 - Value cant be null
+C1.1 - Value must be null, becose root value is null
+C2 - NOT USED, RESERVED FOR UPDATES
+C3 - Value must be different
+C3.1 - Value is fixed, and cant be changed
+C4 - Amount mismatch
+C5 - Value out of range
+
+BALANCE AND TOKEN EXCEPTIONS
+T1 - Balance is not enought to action
+T2 - To low allowance to transfer
+
+GLOBAL LOGIC EXCEPTIONS
+L1 - Cant do this action on disabled contract
