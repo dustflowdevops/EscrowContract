@@ -1301,14 +1301,9 @@
 						"type": "address"
 					},
 					{
-						"internalType": "bool",
-						"name": "isCompleted",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "isCanceled",
-						"type": "bool"
+						"internalType": "enum DealStatus",
+						"name": "status",
+						"type": "uint8"
 					},
 					{
 						"internalType": "bool",
@@ -1578,14 +1573,9 @@
 								"type": "address"
 							},
 							{
-								"internalType": "bool",
-								"name": "isCompleted",
-								"type": "bool"
-							},
-							{
-								"internalType": "bool",
-								"name": "isCanceled",
-								"type": "bool"
+								"internalType": "enum DealStatus",
+								"name": "status",
+								"type": "uint8"
 							},
 							{
 								"internalType": "bool",
@@ -2339,35 +2329,35 @@
 	},
 	"sources": {
 		"Deal.sol": {
-			"keccak256": "0x8402141ad1b0cfdc0572f513eff8bfb7e3536325aa771aefdd26918916b37fde",
+			"keccak256": "0x52d37202754b9b0043cabc74f0f8369adeddb61bf70109d54e8ad60578a600ba",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://da188923eec873c8a06fa15d2f680a20c1a0291902081872925b989098684ef2",
-				"dweb:/ipfs/Qme54EzsEWvR6w6VUhiCxVAoqmiYoWgDyj2HuHbJEDpprX"
+				"bzz-raw://e532cfe6a93ee309ba0121f4d4c96e6fc32088a56757ad57f7d2fd473cc4217a",
+				"dweb:/ipfs/QmSocwA3ebhLCae6yCTd9m4EK49gh6UNLiSW324EZs1rPg"
 			]
 		},
 		"DealCreationManager.sol": {
-			"keccak256": "0xe56b4a35355432181a6f7b2580919d9500b9599d10afc55e60b26ffb72730e6e",
+			"keccak256": "0xe75114551f8e92c9a7de31dbced7345719ab77fdffb3c704597dfd29028a4574",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://98ccc63ea61412934f5644d96e112dfd07d10ac081e0ce0915a69fb0ca489879",
-				"dweb:/ipfs/QmQ9prYmrsVLwatszHjahiWx22LXECgJRSKbaJ2nUSvKdo"
+				"bzz-raw://221e52538c79246c83db48d6d0588a4dc43c4edc9f6ff9c79d6688339e2e6d14",
+				"dweb:/ipfs/QmXZvhVUABxqK2yRP3HTUS6m9BNQsST5kzvopxs8HjktHY"
 			]
 		},
 		"DealEditManager.sol": {
-			"keccak256": "0xca6247b3a63b9cd89a9bc0f670981a4789dc8a2b3f212deec33789531e62c095",
+			"keccak256": "0x5729d537ebc613a17cb17c346b8dffc2d2253d0f40dc9b242fc37d25f97fffba",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://087d5ec32664fe24c7709f1a4285046438c9cd5fbfb2c7fc21d218be2256d51f",
-				"dweb:/ipfs/QmPhTMqT5byVhRduWoBUUYGS9zxCUo8AEYyQj3DSNnfQMu"
+				"bzz-raw://f5a1a193481372d28a2f5fab47a0f1b3b69cd48c5e5177d24f62bcb3cc6cef59",
+				"dweb:/ipfs/QmcstVdizEuumtpn8UhsTe44eyyYqkenwjCHNDzxLY4oi1"
 			]
 		},
 		"DealInteractManager.sol": {
-			"keccak256": "0xc1580fdd838743f368b2ac6c79780abcb9cc9eab6800e074ec2c695af926a04f",
+			"keccak256": "0x0ea7033261bbf388656efa70725b36f38a08108820794d439361191636927824",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://5ef17499dbc3a142a212f9f8ad698eb8c1b27c12c35ad6cf9e1eafd9ade192d8",
-				"dweb:/ipfs/QmTDfC2djpr3Z3PPxaANmcG3GcJF2VGFHgHXr3ov8N3fzw"
+				"bzz-raw://0dceb6c6d53e1ce0a6b4b4e25a2c33aba95ab39b24a1261d57c69ad034d64d8a",
+				"dweb:/ipfs/QmRSHR287YMdDZhMGrBQZXVMJCNcFb72hiBUQYFb9vDK8G"
 			]
 		},
 		"EscrowService.sol": {

@@ -10,7 +10,7 @@ contract WalletContract is LockableContract
     mapping(address => mapping(address => uint256)) public balances;
 
     // Commission parameters (using the Percent library for precision)
-    uint256 public depositCommissionPercent; // Commission percent for deposits, in precision scale
+    uint256 public PRC_DepositCommission; // Commission percent for deposits, in precision scale
     address public commissionRecipient; // Address to receive the commission
 
     event Transfer(address indexed from, address indexed to,address indexed token, uint256 value);
@@ -19,18 +19,18 @@ contract WalletContract is LockableContract
     event CommissionChanged(uint256 newCommissionPercent, address newCommissionRecipient);
 
     // Constructor to initialize commission and commission recipient
-    constructor(uint256 _depositCommissionPercent, address _commissionRecipient){
+    constructor(uint256 _PRC_DepositCommission, address _commissionRecipient){
         require(_commissionRecipient != address(0), "C1");
         // Validate the commission percentage using the MAXVALUE constant from the Percent library
-        require(_depositCommissionPercent <= Percent.MAXVALUE, "C5");
+        require(_PRC_DepositCommission <= Percent.MAXVALUE, "C5");
 
-        depositCommissionPercent = _depositCommissionPercent;
+        PRC_DepositCommission = _PRC_DepositCommission;
         commissionRecipient = _commissionRecipient;
     }
 
     function getAmountToDepositViaComission(uint amount) public view returns (uint)
     {
-        uint256 commission = Percent.applyToNumber(amount, depositCommissionPercent);
+        uint256 commission = Percent.applyToNumber(amount, PRC_DepositCommission);
         return amount + commission;
     }
 
@@ -39,7 +39,7 @@ contract WalletContract is LockableContract
         require(amount > 0, "C5");
 
         // Calculate commission
-        uint256 commission = Percent.applyToNumber(amount, depositCommissionPercent);
+        uint256 commission = Percent.applyToNumber(amount, PRC_DepositCommission);
 
         // If the token is the mainnet token (address(0)), it's handled separately
         if (token == address(0)) {
@@ -93,14 +93,14 @@ contract WalletContract is LockableContract
     }
 
     // Function to change the commission rate and recipient
-    function setDepositCommission(uint256 newCommissionPercent, address newRecipient) public  onlyOwner {
+    function setDepositCommission(uint256 PRC_NewCommission, address newRecipient) public  onlyOwner {
         require(newRecipient != address(0), "C1");
-        require(newCommissionPercent <= Percent.MAXVALUE, "C5");
+        require(PRC_NewCommission <= Percent.MAXVALUE, "C5");
 
-        depositCommissionPercent = newCommissionPercent;
+        PRC_DepositCommission = PRC_NewCommission;
         commissionRecipient = newRecipient;
 
-        emit CommissionChanged(newCommissionPercent, newRecipient);
+        emit CommissionChanged(PRC_DepositCommission, newRecipient);
     }
 
     // Withdraw founds to target

@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.28+commit.7893614a"
+		"version": "0.8.26+commit.8a97fa7a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -20,28 +20,6 @@
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					}
-				],
-				"name": "OwnableInvalidOwner",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					}
-				],
-				"name": "OwnableUnauthorizedAccount",
-				"type": "error"
 			},
 			{
 				"anonymous": false,
@@ -134,32 +112,6 @@
 					}
 				],
 				"name": "CommissionChanged",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "by",
-						"type": "address"
-					}
-				],
-				"name": "ContractDisabled",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "by",
-						"type": "address"
-					}
-				],
-				"name": "ContractEnabled",
 				"type": "event"
 			},
 			{
@@ -940,27 +892,16 @@
 				"type": "event"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					},
+				"inputs": [],
+				"name": "PRC_DepositCommission",
+				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "addDepositByCounterparty",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -974,6 +915,40 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
+					}
+				],
+				"name": "addDepositByCounterparty",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dealId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
 					}
 				],
 				"name": "addDepositByInitiator",
@@ -984,7 +959,7 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -1060,6 +1035,11 @@
 						"internalType": "bytes32",
 						"name": "dealId",
 						"type": "bytes32"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
 					}
 				],
 				"name": "cancelDeal",
@@ -1092,6 +1072,11 @@
 						"internalType": "bytes32",
 						"name": "dealId",
 						"type": "bytes32"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
 					}
 				],
 				"name": "completeDeal",
@@ -1226,6 +1211,16 @@
 						"internalType": "address payable",
 						"name": "newMediator",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "PRC_InitiatorFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "PRC_CounterpartyFee",
+						"type": "uint256"
 					}
 				],
 				"name": "createEditDealMediatorRequest",
@@ -1329,14 +1324,9 @@
 						"type": "address"
 					},
 					{
-						"internalType": "bool",
-						"name": "isCompleted",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "isCanceled",
-						"type": "bool"
+						"internalType": "enum DealStatus",
+						"name": "status",
+						"type": "uint8"
 					},
 					{
 						"internalType": "bool",
@@ -1370,7 +1360,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "PRC_InitatorMediatorFee",
+						"name": "PRC_InitiatorMediatorFee",
 						"type": "uint256"
 					},
 					{
@@ -1418,19 +1408,6 @@
 				"name": "deposit",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "depositCommissionPercent",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -1510,6 +1487,16 @@
 						"type": "address"
 					},
 					{
+						"internalType": "uint256",
+						"name": "PRC_InitiatorFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "PRC_CounterpartyFee",
+						"type": "uint256"
+					},
+					{
 						"internalType": "bool",
 						"name": "singedByInitiator",
 						"type": "bool"
@@ -1541,6 +1528,11 @@
 						"internalType": "bytes32",
 						"name": "dealId",
 						"type": "bytes32"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
 					}
 				],
 				"name": "executeActionsAfterExpiration",
@@ -1601,14 +1593,9 @@
 								"type": "address"
 							},
 							{
-								"internalType": "bool",
-								"name": "isCompleted",
-								"type": "bool"
-							},
-							{
-								"internalType": "bool",
-								"name": "isCanceled",
-								"type": "bool"
+								"internalType": "enum DealStatus",
+								"name": "status",
+								"type": "uint8"
 							},
 							{
 								"internalType": "bool",
@@ -1642,7 +1629,7 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "PRC_InitatorMediatorFee",
+								"name": "PRC_InitiatorMediatorFee",
 								"type": "uint256"
 							},
 							{
@@ -1758,6 +1745,16 @@
 								"type": "address"
 							},
 							{
+								"internalType": "uint256",
+								"name": "PRC_InitiatorFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PRC_CounterpartyFee",
+								"type": "uint256"
+							},
+							{
 								"internalType": "bool",
 								"name": "singedByInitiator",
 								"type": "bool"
@@ -1792,6 +1789,11 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
 					}
 				],
 				"name": "givebackToConunterparty",
@@ -1816,6 +1818,11 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
 					}
 				],
 				"name": "givebackToInitiator",
@@ -1874,54 +1881,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "payUpAddDepositByCounterparty",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "payUpAddDepositByInitiator",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -2110,17 +2069,10 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "newCommissionPercent",
+						"name": "PRC_NewCommission",
 						"type": "uint256"
 					},
 					{
@@ -2287,6 +2239,11 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
 					}
 				],
 				"name": "transferToCounterparty",
@@ -2311,6 +2268,11 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "local",
+						"type": "bool"
 					}
 				],
 				"name": "transferToInitiator",
@@ -2356,160 +2318,7 @@
 						"type": "bytes32"
 					}
 				],
-				"name": "withdrawCancelDeal",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					}
-				],
-				"name": "withdrawCompleteDeal",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					}
-				],
-				"name": "withdrawExecuteActionsAfterExpiration",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "withdrawGivebackToConunterparty",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "withdrawGivebackToInitiator",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					}
-				],
 				"name": "withdrawRejectSidedDeal",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "withdrawTransferToCounterparty",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "dealId",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "withdrawTransferToInitiator",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -2522,30 +2331,8 @@
 			}
 		],
 		"devdoc": {
-			"errors": {
-				"OwnableInvalidOwner(address)": [
-					{
-						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
-					}
-				],
-				"OwnableUnauthorizedAccount(address)": [
-					{
-						"details": "The caller account is not authorized to perform an operation."
-					}
-				]
-			},
 			"kind": "dev",
-			"methods": {
-				"owner()": {
-					"details": "Returns the address of the current owner."
-				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
-				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
@@ -2565,82 +2352,50 @@
 		},
 		"optimizer": {
 			"enabled": true,
-			"runs": 20
+			"runs": 200
 		},
 		"remappings": [],
 		"viaIR": true
 	},
 	"sources": {
-		"@openzeppelin/contracts/access/Ownable.sol": {
-			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
-				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0xe06a3f08a987af6ad2e1c1e774405d4fe08f1694b67517438b467cecf0da0ef7",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://df6f0c459663c9858b6cba2cda1d14a7d05a985bed6d2de72bd8e78c25ee79db",
-				"dweb:/ipfs/QmeTTxZ7qVk9rjEv2R4CpCwdf8UMCcRqDNMvzNxHc3Fnn9"
-			]
-		},
-		"@openzeppelin/contracts/utils/Context.sol": {
-			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
-				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
-			]
-		},
 		"Deal.sol": {
-			"keccak256": "0x8402141ad1b0cfdc0572f513eff8bfb7e3536325aa771aefdd26918916b37fde",
+			"keccak256": "0xc8ec0f04b5d955b22afca1f3608be643dce5bf9e06c8fd892c20a598342c2303",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://da188923eec873c8a06fa15d2f680a20c1a0291902081872925b989098684ef2",
-				"dweb:/ipfs/Qme54EzsEWvR6w6VUhiCxVAoqmiYoWgDyj2HuHbJEDpprX"
+				"bzz-raw://20653ebdc1b0cb6c31253f05f574385166c3ddafe68d9a8a853273b762141dfe",
+				"dweb:/ipfs/QmUnktC7cgSbuFJVSQy6xTtmAVikFeDBMxCLMKrA7WQXnP"
 			]
 		},
 		"DealCreationManager.sol": {
-			"keccak256": "0xe56b4a35355432181a6f7b2580919d9500b9599d10afc55e60b26ffb72730e6e",
+			"keccak256": "0xe75114551f8e92c9a7de31dbced7345719ab77fdffb3c704597dfd29028a4574",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://98ccc63ea61412934f5644d96e112dfd07d10ac081e0ce0915a69fb0ca489879",
-				"dweb:/ipfs/QmQ9prYmrsVLwatszHjahiWx22LXECgJRSKbaJ2nUSvKdo"
+				"bzz-raw://221e52538c79246c83db48d6d0588a4dc43c4edc9f6ff9c79d6688339e2e6d14",
+				"dweb:/ipfs/QmXZvhVUABxqK2yRP3HTUS6m9BNQsST5kzvopxs8HjktHY"
 			]
 		},
 		"DealEditManager.sol": {
-			"keccak256": "0xb20f5991e561b357131a9453b120c307282fa132b2ab42db013d10d028e3a26e",
+			"keccak256": "0xa4730129e7754ad28127478afc28d41c5602ff0913869dbbb319221792aae031",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://e84d0ab47bd542048306786745f29e95b8ac040671efd6239c25f0428cdce639",
-				"dweb:/ipfs/QmV54BwiLdmLiRWc1suCACM96jsF7FAd4Q5uTf6tHSjZX2"
+				"bzz-raw://b0902e167dfc15b6cf62dfaa3e39b5a4063daa1b2027493d28b4f47723285842",
+				"dweb:/ipfs/QmUEa7D5V5rn3mz21P11jGVFnCjZUhoASkCa6wyBinFAVy"
 			]
 		},
 		"DealInteractManager.sol": {
-			"keccak256": "0x7a99f6ba4578206a19f021d2298b20507661e673ce70efe1962421d8903e684b",
+			"keccak256": "0x7b83c90a26ae40275feabfd59cfcf410820d53adccc68af6faa9cba7354c50cc",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://d3f9ee715e9843661a637cd23a21a01cbdfd13ef2acc66a411f5ca7c6e748b44",
-				"dweb:/ipfs/Qmeka4kWKZzvNmEMh26iB4mtEK9jnbKWNdS9RNe3ns3NUE"
-			]
-		},
-		"DealLocalInteractManager.sol": {
-			"keccak256": "0x14e8347f31a3317770cceacb3d2976efe5aad110cb537874a8c10fa5a71a44ec",
-			"license": "Proprietary",
-			"urls": [
-				"bzz-raw://7b4420e03aa3131c773f6e4d34ce0e1bffd9fa21179a4e608e63e77ff2398e04",
-				"dweb:/ipfs/QmZ2LenHAkhztQ9oKiRQQxetg6PLTpjUgq8qLpLj1s8RVV"
+				"bzz-raw://609ae844d12838fe577efe59fdeb5989d3d061e86397dca71e20bb336ee286ec",
+				"dweb:/ipfs/QmQs1isGguzAMqZAMYJ272t3yGPbm3MxRjjFFmZkDeR81o"
 			]
 		},
 		"LockableContract.sol": {
-			"keccak256": "0x147b10df29505024bc1920f9801f38de92cef922ecde099f930873f9e0756e82",
+			"keccak256": "0xa91c9bf79ba47797d1d55fa32248d511e318945f35786aca126ba729522c39b6",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://734e2252ef43cfd6a16333834cbc3515d5508f014b178b6699ed5298212271e1",
-				"dweb:/ipfs/QmcGjsrn4KYW7x8naYqAv5cGUurGmyYGZteVcDT15PEBC4"
+				"bzz-raw://2523548b74b8a6276c2deb6b40023016460b6e3882f631028aa61821d4c8ec3e",
+				"dweb:/ipfs/QmZz3pi8PEJPXdaqxaYUyUPVGRWu2FTcqhMRtDLo7y2Vzv"
 			]
 		},
 		"Percent.sol": {
@@ -2652,11 +2407,11 @@
 			]
 		},
 		"WalletContract.sol": {
-			"keccak256": "0x19b3b4e7a334a139456578de2a3fb3a08b21f0bbadc516ead9eaf21fc81477c1",
+			"keccak256": "0x9c91d6eb1b9a7f2254d2d981c6ec4182c8eb756c6a69c249c7c8ee034a4313da",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://1139c8d6c34d373bc7af612dd3d24d51bf133b62e2b207b3382731e6f52cf466",
-				"dweb:/ipfs/QmZgK5fcJE6tDXVFmS7bsGp5dXKMbHaH1Qj1tCyou3jeap"
+				"bzz-raw://183f391f5f1c24edf1d0c64e1d82b3a0dc6fa2b0319de53b7cc69d33dcf9c642",
+				"dweb:/ipfs/QmXaYYZ4YS3mnaskDXbUvCErPdMDX42hBLTxhHnf8scJsw"
 			]
 		}
 	},

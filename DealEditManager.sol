@@ -38,7 +38,6 @@ contract DealEditManager is DealInteractManager
 
         require(deal.initiator == msg.sender || deal.counterparty == msg.sender, 
             "D5");
-
         require(request.rejected == false, "C3.1");    
 
         if (reject) {
@@ -59,6 +58,8 @@ contract DealEditManager is DealInteractManager
         }
 
         if (request.singedByInitiator && request.signedByCounterparty) {
+            deal.PRC_InitiatorMediatorFee = request.PRC_InitiatorFee;
+            deal.PRC_CounterpartyMediatorFee =  request.PRC_CounterpartyFee;
             deal.mediator = request.mediator;
 
             emit JoinedToDealAsMediator(request.mediator, request.dealId);
@@ -70,21 +71,30 @@ contract DealEditManager is DealInteractManager
     }
 
     //Create request to set mediator
-    function createEditDealMediatorRequest(bytes32 dealId, address payable newMediator) public returns (uint) {
+    function createEditDealMediatorRequest(bytes32 dealId, address payable newMediator, uint PRC_InitiatorFee, uint PRC_CounterpartyFee) public returns (uint) {
         Deal storage deal = deals[dealId];
 
         require(deal.initiator == msg.sender || deal.counterparty == msg.sender, 
             "D5");
         
+        require(PRC_InitiatorFee <= Percent.MAXVALUE, "C5");
+        require(PRC_CounterpartyFee <= Percent.MAXVALUE, "C5");
         require(newMediator != address(0), "C1");
         require(deal.mediator == address(0), "C3.1");
+
+        if(!deal.isTwoSided)
+        {
+            require(PRC_CounterpartyFee == 0, "C1.1");
+        }
 
         EditDealMediator memory request = EditDealMediator({
             dealId: dealId,
             mediator: newMediator,
             singedByInitiator: false,
             signedByCounterparty: false,
-            rejected: false
+            rejected: false,
+            PRC_InitiatorFee :  PRC_InitiatorFee,
+            PRC_CounterpartyFee :PRC_CounterpartyFee
         });
 
         uint requestId = totalEditDealMediatorRequests;
@@ -117,7 +127,7 @@ contract DealEditManager is DealInteractManager
             mediatorActionOnExpiration: newMediatorActionOnExpiration,
             singedByInitiator:  false,
             signedByCounterparty: false,
-            signedByMediator :false,
+            signedByMediator : (deal.mediator == address(0)),
             rejected: false
         });
 
@@ -138,8 +148,6 @@ contract DealEditManager is DealInteractManager
         Deal storage deal = deals[request.dealId];
 
         require(deal.counterparty == msg.sender || deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
-        DealContract.requireCanEdit(deal);
-
         require(request.rejected == false, "C3.1");    
 
         if (reject) {
@@ -150,6 +158,7 @@ contract DealEditManager is DealInteractManager
             return false;
         }
 
+        DealContract.requireCanEdit(deal);
         require(request.expirationDate == DealContract.NOEXPIRATIONDATE || request.expirationDate <= block.timestamp, "D1.1"); 
 
         if (deal.initiator == msg.sender) {
@@ -180,9 +189,15 @@ contract DealEditManager is DealInteractManager
     function payUpMadeDealTwoSided(bytes32 dealId, address tokenAdress, uint amount, uint PRC_mediatorFee) public payable returns (bool){
         Deal storage deal = deals[dealId];
 
+        require(PRC_mediatorFee <= Percent.MAXVALUE, "C5");
         require(deal.counterparty == msg.sender, "D5");
         DealContract.requireCanEdit(deal);  
         require(deal.isTwoSided == false, "D2.2");
+
+        if(PRC_mediatorFee != 0)
+        {
+            require(deal.mediator != address(0), "D1.1");
+        }  
 
         uint balance = balanceOf(msg.sender, tokenAdress);
 
@@ -208,25 +223,17 @@ contract DealEditManager is DealInteractManager
     function madeDealTwoSided(bytes32 dealId, address tokenAdress, uint amount, uint PRC_mediatorFee) public  returns (bool){
         Deal storage deal = deals[dealId];
 
+        require(PRC_mediatorFee <= Percent.MAXVALUE, "C5");
         require(deal.counterparty == msg.sender, "D5");
         DealContract.requireCanEdit(deal);  
         require(deal.isTwoSided == false, "D2.2");
-
-        require(balanceOf(msg.sender, tokenAdress) >= amount, "T1");
-        removeBalanceFrom(msg.sender,tokenAdress, amount);
 
         if(PRC_mediatorFee != 0)
         {
             require(deal.mediator != address(0), "D1.1");
         }  
 
-        uint balance = balanceOf(msg.sender, tokenAdress);
-
-        if(balance < amount)
-        {
-            deposit(tokenAdress, amount - balance); // Deposit all rest money to create deal
-        }
-
+        require(balanceOf(msg.sender, tokenAdress) >= amount, "T1");
         removeBalanceFrom(msg.sender,tokenAdress, amount);
 
         deal.isTwoSided = true;
@@ -258,6 +265,9 @@ struct EditDealMediator{
     bytes32 dealId;
 
     address payable mediator; 
+
+    uint PRC_InitiatorFee;
+    uint PRC_CounterpartyFee;
 
     bool singedByInitiator;
     bool signedByCounterparty;

@@ -37,7 +37,7 @@ struct Deal {
     uint256 initiatorCurrentAmount; // The current balance of the initiator
     uint256 counterpartyCurrentAmount; // The current balance of the counterparty
 
-    uint256 PRC_InitatorMediatorFee; // The fee percentage from the counterparty's tokens for the contract
+    uint256 PRC_InitiatorMediatorFee; // The fee percentage from the counterparty's tokens for the contract
     uint256 PRC_CounterpartyMediatorFee; // The mediator's fee percentage from the counterparty's tokens
 
     address initiatorTokenAddress; // The token address used by the initiator, if applicable
@@ -125,7 +125,7 @@ library DealContract {
             initiatorCurrentAmount: _initiatorCreateAmount,
             counterpartyCurrentAmount: _counterpartyCreateAmount,
 
-            PRC_InitatorMediatorFee: _PRC_MediatorFeeInititor,
+            PRC_InitiatorMediatorFee: _PRC_MediatorFeeInititor,
             PRC_CounterpartyMediatorFee: _PRC_MediatorFeeCounterparty,
  
             initiatorTokenAddress: _initiatorTokenAddress,
@@ -149,7 +149,7 @@ library DealContract {
             deal.counterpartyCreateAmount,
             deal.initiatorCurrentAmount,
             deal.counterpartyCurrentAmount,
-            deal.PRC_InitatorMediatorFee,
+            deal.PRC_InitiatorMediatorFee,
             deal.PRC_CounterpartyMediatorFee,
             deal.initiatorTokenAddress,
             deal.counterpartyTokenAddress,

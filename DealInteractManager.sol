@@ -28,7 +28,7 @@ contract DealInteractManager is DealCreationManager
         uint depositCounterparty = deal.counterpartyCurrentAmount;
         address tokenCounterparty = deal.counterpartyTokenAddress;
 
-        uint PRC_feeInitatior = deal.PRC_InitatorMediatorFee;
+        uint PRC_feeInitatior = deal.PRC_InitiatorMediatorFee;
         uint PRC_feeCounterparty = deal.PRC_CounterpartyMediatorFee;
 
         uint amountToMediatorInitiator = Percent.applyToNumber(depositInitiator, PRC_feeInitatior);
@@ -118,7 +118,7 @@ contract DealInteractManager is DealCreationManager
         uint depositCounterparty = deal.counterpartyCurrentAmount;
         address tokenCounterparty = deal.counterpartyTokenAddress;
 
-        uint PRC_feeInitatior = deal.PRC_InitatorMediatorFee;
+        uint PRC_feeInitatior = deal.PRC_InitiatorMediatorFee;
         uint PRC_feeCounterparty = deal.PRC_CounterpartyMediatorFee;
 
         uint amountToMediatorInitiator = Percent.applyToNumber(depositInitiator, PRC_feeInitatior);
@@ -154,7 +154,7 @@ contract DealInteractManager is DealCreationManager
         uint depositCounterparty = deal.counterpartyCurrentAmount;
         address tokenCounterparty = deal.counterpartyTokenAddress;
 
-        uint PRC_feeInitatior = deal.PRC_InitatorMediatorFee;
+        uint PRC_feeInitatior = deal.PRC_InitiatorMediatorFee;
         uint PRC_feeCounterparty = deal.PRC_CounterpartyMediatorFee;
 
         uint amountToMediatorInitiator = Percent.applyToNumber(depositInitiator, PRC_feeInitatior);
@@ -255,7 +255,7 @@ contract DealInteractManager is DealCreationManager
         deal.initiatorCurrentAmount -= amount;
 
         address tokenIntitiator = deal.initiatorTokenAddress;
-        uint PRC_feeInitatior = deal.PRC_InitatorMediatorFee;
+        uint PRC_feeInitatior = deal.PRC_InitiatorMediatorFee;
         uint amountToMediatorInitiator = Percent.applyToNumber(amount, PRC_feeInitatior);
 
         invokeAddBalanceTo(local, deal.counterparty, tokenIntitiator, amount- amountToMediatorInitiator);
@@ -326,7 +326,7 @@ contract DealInteractManager is DealCreationManager
         deal.initiatorCurrentAmount -= amount;
 
         address tokenIntitiator = deal.initiatorTokenAddress;
-        uint PRC_feeInitatior = deal.PRC_InitatorMediatorFee;
+        uint PRC_feeInitatior = deal.PRC_InitiatorMediatorFee;
         uint amountToMediatorInitiator = Percent.applyToNumber(amount, PRC_feeInitatior);
 
         invokeAddBalanceTo(local, deal.initiator, tokenIntitiator, amount- amountToMediatorInitiator);

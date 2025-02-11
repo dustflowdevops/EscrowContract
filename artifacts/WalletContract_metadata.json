@@ -9,7 +9,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_depositCommissionPercent",
+						"name": "_PRC_DepositCommission",
 						"type": "uint256"
 					},
 					{
@@ -160,6 +160,19 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "PRC_DepositCommission",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -272,19 +285,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "depositCommissionPercent",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "disableContract",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -333,7 +333,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "newCommissionPercent",
+						"name": "PRC_NewCommission",
 						"type": "uint256"
 					},
 					{
@@ -459,11 +459,11 @@
 			]
 		},
 		"WalletContract.sol": {
-			"keccak256": "0x7a9309112745310a4e86e624d787c8fe800f6e5776284788624f50687525509e",
+			"keccak256": "0x9c91d6eb1b9a7f2254d2d981c6ec4182c8eb756c6a69c249c7c8ee034a4313da",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://bad3c56babdb8909ba5ae6e0f79b22144d2ffdc056dceec957aeee751d423851",
-				"dweb:/ipfs/QmRdtSuTTrThxiUP1M6QjAvYHnnCuYhnGV3d6ZTHUQyWj5"
+				"bzz-raw://183f391f5f1c24edf1d0c64e1d82b3a0dc6fa2b0319de53b7cc69d33dcf9c642",
+				"dweb:/ipfs/QmXaYYZ4YS3mnaskDXbUvCErPdMDX42hBLTxhHnf8scJsw"
 			]
 		}
 	},
