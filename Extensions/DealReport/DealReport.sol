@@ -34,7 +34,7 @@ contract DealReview {
     ) public {
         Deal memory deal = dealContract.getDeal(dealId);
 
-        require(deal.isCompleted || deal.isCanceled, "D4");
+        require(deal.status != DealStatus.UnFinished, "D4");
         
         require(bytes(_comment).length > 0, "C1");
         require(_to != address(0), "C1");

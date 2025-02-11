@@ -13,14 +13,19 @@ enum MediatorAction {
     none                   // Default empty status
 }
 
+enum DealStatus {
+    Completed,
+    Canceled,
+    UnFinished
+}
+
 // Deal structures
 struct Deal {
     address payable initiator; // The party that initiates the deal
     address payable counterparty; // The counterparty in the deal
     address payable mediator; // The mediator in the deal
 
-    bool isCompleted; // Flag indicating if the deal is completed
-    bool isCanceled; // Flag indicating if the deal is cancled
+    DealStatus status;
 
     bool isTwoSided; // Inititor and counterpart both deposit money
 
@@ -50,7 +55,7 @@ library DealContract {
     function requireCanEdit(Deal memory deal) public view {
         require(deal.expirationDate == NOEXPIRATIONDATE || deal.expirationDate < block.timestamp, "D1");
         require(deal.isSignedByCounterparty, "D2");
-        require(deal.isCompleted == false && deal.isCanceled == false, "D3");
+        require(deal.status == DealStatus.UnFinished, "D3");
     }
 
     // Constructor to initialize and validate the Deal struct
@@ -111,8 +116,7 @@ library DealContract {
 
             isSignedByCounterparty: !isTwoSided,
 
-            isCompleted: false,
-            isCanceled: false,
+            status: DealStatus.UnFinished,
 
             isTwoSided: isTwoSided,
 

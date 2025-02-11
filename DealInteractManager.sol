@@ -17,7 +17,7 @@ contract DealInteractManager is DealCreationManager
 
         require(deal.counterparty == msg.sender || deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
         require(deal.isSignedByCounterparty, "D2");
-        require(deal.isCompleted == false && deal.isCanceled == false, "D3");        
+        require(deal.status == DealStatus.UnFinished, "D3");        
         require(deal.expirationDate <= block.timestamp, "D1.2");
 
         MediatorAction action = deal.mediatorActionOnExpiration;
@@ -98,7 +98,7 @@ contract DealInteractManager is DealCreationManager
             amountToMediatorInitiator, amountToMediatorCounterparty);  
         }
 
-        deal.isCanceled = true;
+        deal.status = DealStatus.Canceled;
 
         emit DealCanceled(dealId, deal.initiator, deal.counterparty, deal.mediator, msg.sender);
 
@@ -129,6 +129,8 @@ contract DealInteractManager is DealCreationManager
 
         invokeAddBalanceTo(local, deal.counterparty, tokenCounterparty, depositCounterparty - depositCounterparty);
         invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+
+        deal.status = DealStatus.Canceled;
 
         emit GivebackToInitiator(dealId, deal.initiator, deal.counterparty, deal.mediator, 
         msg.sender, depositInitiator, amountToMediatorInitiator); 
@@ -163,6 +165,8 @@ contract DealInteractManager is DealCreationManager
 
         invokeAddBalanceTo(local, deal.initiator, tokenCounterparty, depositCounterparty - depositCounterparty);
         invokeAddBalanceTo(local, deal.mediator, tokenCounterparty, amountToMediatorCounterparty);
+
+        deal.status = DealStatus.Completed;
 
         emit TransferToInitiator(dealId, deal.initiator, deal.counterparty, deal.mediator,
         msg.sender, depositCounterparty,amountToMediatorCounterparty);    

@@ -46,7 +46,7 @@ contract DealCreationManager is WalletContract {
 
         require(deal.counterparty == msg.sender || deal.initiator == msg.sender, "D5");
         require(deal.isSignedByCounterparty == false && deal.isTwoSided, "D2.1");
-        require(deal.isCompleted == false && deal.isCanceled == false, "D3");
+        require(deal.status == DealStatus.UnFinished, "D3");
 
         withdrawFromContractTo(deal.initiator, deal.initiatorTokenAddress, deal.initiatorCurrentAmount);
 
@@ -62,7 +62,7 @@ contract DealCreationManager is WalletContract {
         require(deal.counterparty == msg.sender || deal.initiator == msg.sender, "D5");
         require(deal.isTwoSided, "D3.1");
         require(deal.isSignedByCounterparty == false, "D2.1");
-        require(deal.isCompleted == false && deal.isCanceled == false, "D3");
+        require(deal.status == DealStatus.UnFinished, "D3");
 
         addBalanceTo(deal.initiator,deal.initiatorTokenAddress,deal.initiatorCurrentAmount);
 
@@ -78,7 +78,7 @@ contract DealCreationManager is WalletContract {
         require(deal.counterparty == msg.sender, "D5");
         require(deal.isTwoSided, "D3.1");
         require(deal.isSignedByCounterparty == false, "D2.1");
-        require(deal.isCompleted == false && deal.isCanceled == false, "D3");
+        require(deal.status == DealStatus.UnFinished, "D3");
 
         uint balance = balanceOf(msg.sender, deal.counterpartyTokenAddress);
 
@@ -108,7 +108,7 @@ contract DealCreationManager is WalletContract {
         require(deal.counterparty == msg.sender, "D5");
         require(deal.isTwoSided, "D3.1");
         require(deal.isSignedByCounterparty == false, "D2.1");
-        require(deal.isCompleted == false && deal.isCanceled == false, "D3");
+        require(deal.status == DealStatus.UnFinished, "D3");
 
         require(balanceOf(msg.sender, deal.counterpartyTokenAddress) >= deal.counterpartyCreateAmount, "T1");
 
