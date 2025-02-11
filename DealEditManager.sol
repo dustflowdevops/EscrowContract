@@ -90,8 +90,8 @@ contract DealEditManager is DealInteractManager
         EditDealMediator memory request = EditDealMediator({
             dealId: dealId,
             mediator: newMediator,
-            singedByInitiator: false,
-            signedByCounterparty: false,
+            singedByInitiator:  (deal.initiator == msg.sender),
+            signedByCounterparty: (deal.counterparty == msg.sender),
             rejected: false,
             PRC_InitiatorFee :  PRC_InitiatorFee,
             PRC_CounterpartyFee :PRC_CounterpartyFee
@@ -125,9 +125,9 @@ contract DealEditManager is DealInteractManager
             dealId: dealId,
             expirationDate: newExpirationDate,
             mediatorActionOnExpiration: newMediatorActionOnExpiration,
-            singedByInitiator:  false,
-            signedByCounterparty: false,
-            signedByMediator : (deal.mediator == address(0)),
+            singedByInitiator:  (deal.initiator == msg.sender),
+            signedByCounterparty: (deal.counterparty == msg.sender),
+            signedByMediator : (deal.mediator == address(0)) || (deal.mediator == msg.sender),
             rejected: false
         });
 
