@@ -39,6 +39,8 @@ contract DealEditManager is DealInteractManager
         require(deal.initiator == msg.sender || deal.counterparty == msg.sender, 
             "D5");
 
+        require(request.rejected == false, "C3.1");    
+
         if (reject) {
             request.rejected = true;
 
@@ -137,6 +139,8 @@ contract DealEditManager is DealInteractManager
 
         require(deal.counterparty == msg.sender || deal.initiator == msg.sender || deal.mediator == msg.sender, "D5");
         DealContract.requireCanEdit(deal);
+
+        require(request.rejected == false, "C3.1");    
 
         if (reject) {
             request.rejected = true;
