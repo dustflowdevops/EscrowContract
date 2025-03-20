@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.28+commit.7893614a"
+		"version": "0.8.26+commit.8a97fa7a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -33,11 +33,6 @@
 			},
 			{
 				"inputs": [
-					{
-						"internalType": "address payable",
-						"name": "_initiator",
-						"type": "address"
-					},
 					{
 						"internalType": "address payable",
 						"name": "_counterparty",
@@ -109,14 +104,9 @@
 								"type": "address"
 							},
 							{
-								"internalType": "bool",
-								"name": "isCompleted",
-								"type": "bool"
-							},
-							{
-								"internalType": "bool",
-								"name": "isCanceled",
-								"type": "bool"
+								"internalType": "enum DealStatus",
+								"name": "status",
+								"type": "DealStatus"
 							},
 							{
 								"internalType": "bool",
@@ -150,7 +140,7 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "PRC_InitatorMediatorFee",
+								"name": "PRC_InitiatorMediatorFee",
 								"type": "uint256"
 							},
 							{
@@ -207,14 +197,9 @@
 								"type": "address"
 							},
 							{
-								"internalType": "bool",
-								"name": "isCompleted",
-								"type": "bool"
-							},
-							{
-								"internalType": "bool",
-								"name": "isCanceled",
-								"type": "bool"
+								"internalType": "enum DealStatus",
+								"name": "status",
+								"type": "DealStatus"
 							},
 							{
 								"internalType": "bool",
@@ -248,7 +233,7 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "PRC_InitatorMediatorFee",
+								"name": "PRC_InitiatorMediatorFee",
 								"type": "uint256"
 							},
 							{
@@ -318,14 +303,9 @@
 								"type": "address"
 							},
 							{
-								"internalType": "bool",
-								"name": "isCompleted",
-								"type": "bool"
-							},
-							{
-								"internalType": "bool",
-								"name": "isCanceled",
-								"type": "bool"
+								"internalType": "enum DealStatus",
+								"name": "status",
+								"type": "DealStatus"
 							},
 							{
 								"internalType": "bool",
@@ -359,7 +339,7 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "PRC_InitatorMediatorFee",
+								"name": "PRC_InitiatorMediatorFee",
 								"type": "uint256"
 							},
 							{
@@ -428,19 +408,19 @@
 	},
 	"sources": {
 		"Deal.sol": {
-			"keccak256": "0x05c0d811c59706e472dd3175e3741f0748596ae2feab649e2c1d31b51793740c",
+			"keccak256": "0x4f4241cc8e621b53fa8f23bc32fd0bd019e82f0395f7aad1196ec3c536ea32f3",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://3d42f31db2c2f0049fd092c14d38cc76fa94233c91d597eaa011ee660c74c2e3",
-				"dweb:/ipfs/QmeqQ6cTfo5B6iJHxWZQXpvaFpMZJneLPSroR9MvsMexJy"
+				"bzz-raw://4ec4db961d9757893a62b6e7be556c3e6df30420b0750312c8e912568e7308fd",
+				"dweb:/ipfs/QmenJRaUAcYTxPAEZBy9wppoGXs7No7vNWaUHmtCYc4jeG"
 			]
 		},
 		"Percent.sol": {
-			"keccak256": "0x02fb41a227b3b112d584b0e3842946332e0447dfdab34687a53810ef39820a62",
+			"keccak256": "0xb92a9bb2577846f5e68b08fae63ee137d8df826cad1ed0746bdf55e1ab0b0ca0",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://3275da5e3677095b4af3035d81d6f5a095b3b7e799f019e4abcad0ad66db9bb4",
-				"dweb:/ipfs/QmcrA1qLf1U2KNYVyXmYtE1Wc5rN35pEcWe9eARKnKckAQ"
+				"bzz-raw://dc04e418475d68081b2d9fc7a8ec2c3e1e2f927c78c950d1982047228edd886a",
+				"dweb:/ipfs/QmNjweszDAqbDMUVm6uodxH7SiqGSLYMGQ4ogrPCxoWfQU"
 			]
 		}
 	},

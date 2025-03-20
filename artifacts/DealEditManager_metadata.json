@@ -2375,11 +2375,11 @@
 			]
 		},
 		"DealEditManager.sol": {
-			"keccak256": "0xa4730129e7754ad28127478afc28d41c5602ff0913869dbbb319221792aae031",
+			"keccak256": "0xe3efdd6ba9f1e67ed8a955730463ac13b77a7bdcc9fbeb3eee0faae9f0295173",
 			"license": "Proprietary",
 			"urls": [
-				"bzz-raw://b0902e167dfc15b6cf62dfaa3e39b5a4063daa1b2027493d28b4f47723285842",
-				"dweb:/ipfs/QmUEa7D5V5rn3mz21P11jGVFnCjZUhoASkCa6wyBinFAVy"
+				"bzz-raw://4dd37f288875af20bca4374e458ca1883d95ba8de8fd26f758f4a85f49eb8712",
+				"dweb:/ipfs/QmPpra2gvvzYVU4bY3Cavid2BCGw8KvG8ckJiprUSN9SP3"
 			]
 		},
 		"DealInteractManager.sol": {

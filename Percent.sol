@@ -13,7 +13,7 @@ library Percent {
         returns (uint256)
     {
         require(percent >= 0, "C5"); // Ensure percent is non-negative
-        require(percent < MAXVALUE, "C5");
+        require(percent <= MAXVALUE, "C5");
 
         // Multiply the value by SCALE to adjust for precision
         uint256 scaledValue = value * SCALE;
